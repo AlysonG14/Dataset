@@ -1,0 +1,55 @@
+```{python}
+
+import os
+import pandas as pd
+from sqlalchemy.sql._elements_constructors import true
+import numpy as np
+import matplotlib.pyplot as plt
+import pygwalker as pyg
+import seaborn as sns
+
+
+df = pd.read_csv(r'parkinson/parkinsons_updrs.data')
+df.tail(10)
+
+verify_column = df.columns
+print(verify_column)
+
+df = df[df['age'] < 50]
+
+df['sex'].astype('str')
+
+df['sex'] = df['sex'].replace({0: 'Male', 1: 'Female'})
+
+plt.figure(figsize=(8, 6))
+sns.histplot(data=df, x="sex")
+
+plt.title('Distribuition of Parkinson', size='15', col='darkgreen')
+plt.xlabel('Gender', size='12', col='darkblue')
+plt.ylabel('Number of Pacients', size= '12')
+plt.show()
+
+
+```
+
+```{python}
+
+import pandas as pd
+
+# example simply to replace values
+
+data = {
+    'Array 1': ['Toy', 'Old'],
+    'Array 2': ['Serious', 'Normal'],
+    'Array 3': ['Nightmare', 'Monster'],
+}
+
+df = pd.DataFrame(data)
+df.head(3)
+
+df.replace(to_replace="Old", value='Withered')
+
+
+
+
+```

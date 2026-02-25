@@ -1,0 +1,296 @@
+```{r}
+
+library(datasets)
+
+# LOAD DATA 
+
+head(iris)
+
+# ALL DATA
+
+hist(iris$Petal.Length)
+summary(iris$Petal.Length)
+
+summary(iris$Species)
+
+# Versicolor
+
+hist(iris$Petal.Length[iris$Species == 'versicolor'],
+    main = "Petal Length: Versicolor")
+
+# Virginica
+
+hist(iris$Petal.Length[iris$Species == 'virginica'],
+    main = "Petal Length: Virginica")
+
+# MULTIPLE SELECTORS
+
+# short virginica petals only
+
+hist(iris$Petal.Length[iris$Species == 'virginica' & iris$Petal.Length < 5.5],
+    main = "Petal Length: Short Virginica"
+)
+
+i.setosa <- iris[iris$Species == "setosa",]
+i.setosa
+
+# explore subsample
+
+head(i.setosa)
+summary(i.setosa$Petal.Length)
+hist(i.setosa$Petal.Length, main = "Histogram")
+
+# CLEAN UP
+
+rm(list = ls())
+
+
+
+
+```
+
+```{r}
+
+vNumeric <- c(1, 2, 3)
+vCharacter <- c("a", "b", "c")
+vLogical <- c(T, F, T)
+
+dfa <- cbind(vNumeric, vCharacter, vLogical)
+dfa # Matrix of one data type
+
+df <- as.data.frame(cbind(vNumeric, vCharacter, vLogical))
+df
+
+list1 <- list(vNumeric, vCharacter, vLogical)
+
+# another list
+
+list2 <- list(vNumeric, vCharacter, vLogical, list1)
+list2
+
+# goes to "least restrictive" data type
+
+(coerce1 <- c(1, "b", TRUE))
+typeof(coerce1)
+
+```
+
+```{r}
+
+(x1 <- 1:3)
+(y <- 1:9)
+
+# combine variables
+
+(df1 <- cbind.data.frame(x1, y))
+typeof(df1$x1)
+str(df1)
+
+x3 <- c(1:3)
+df3 <- cbind.data.frame(x3, y)
+(df3$x3 <- factor(df3$x3,
+    levels = c(1, 2, 3)))
+typeof(df3$x3)
+str(df3)
+
+x4 <- c(1:3)
+df4 <- cbind.data.frame(x4, y)
+df4$x4 <- factor(df4$x4,
+    levels = c(1:3),
+    labels = c("macOS", "Windows", "Linux"))
+df4
+typeof(df4$x4)
+
+x5 <- c(1:3)
+df5 <- cbind.data.frame(x5, y)
+df5
+
+(df5$x5 <- ordered(df5$x5, 
+    levels = c(3, 2, 1),
+    labels = c("No", "Maybe", "Yes")))
+df5
+typeof(df5$x5)
+str(df5)
+
+x6 <- scan()
+x6
+
+x7 <- rep(TRUE, 5)
+x7
+
+x8 <- rep(c(TRUE, FALSE), 5)
+x8
+
+
+```
+
+
+```{r}
+
+pacman::p_load(pacman, dplyr, ggplot2, ggthemes, ggvis, httr, lubridate, plotly, rio, rmarkdown, shiny, stringr, tidyr)
+
+# this is a new method to browser in https
+# browseURL("https://www.google.com") 
+
+# IMPORT DATA
+
+# CSV
+
+library(dplyr)
+rio_csv <- import("/net/si0vm11670/fs0/home/atl8ca/exploring-data-R/data/netflix_titles.csv.csv")
+head(rio_csv)
+
+rio_csv |>
+    filter(
+        grepl("Brazil", country, fixed = TRUE),
+        grepl("TV Show", type, fixed = TRUE)
+    )
+
+
+
+# TXT
+
+rio_txt <- import("/net/si0vm11670/fs0/home/atl8ca/exploring-data-R/data/block.txt")
+head(rio_txt)
+
+
+```
+
+```{r}
+
+?mtcars
+head(mtcars)
+
+cars <- mtcars[, c(1:4, 6:7, 9:11)]
+head(cars)
+
+hc <- cars
+      dist
+      hclust
+
+plot(hc)
+
+rect.hclust(hc, k = 2, border = "gray")
+rect.hclust(hc, k = 3, border = "blue")
+
+
+
+```
+
+```{r}
+
+# less is more
+
+pacman::p_load(pacman, dplyr, ggplot2, ggthemes, ggvis, httr, lubridate, plotly, rio, rmarkdown, shiny, stringr, tidyr)
+
+library(datasets)
+
+head(mtcars)
+
+cars <- mtcars[, c(1:4, 6:7, 9:11)]
+head(cars)
+
+# read the CSV File
+
+library(tidyverse)
+library(dplyr)
+
+next_netflix <- import('/net/si0vm11670/fs0/home/atl8ca/exploring-data-R/data/netflix_titles.csv.csv')
+
+
+next_netflix |>
+    filter(
+        listed_in == "Kids' TV"
+    )
+
+next_netflix
+
+x <- as.matrix(data[-12])
+y <- data[, 12]
+
+
+```
+
+```{r}
+
+reg1 <- lm(RTEN ~ CONT + INTG + DMNR + DILG + CFMG + DECI + PREP + FAMI + ORAL + WRIT + PHYS, data = USJudgeRatings)
+
+reg1
+summary(reg1)
+
+anova(reg1)
+coef(reg1)
+confint(reg1)
+resid(reg1)
+hist(residuals(reg1))
+
+p_load(lars, caret)
+
+# conventional stepwise regression
+
+stepwise <- lars(x, y, type = "stepwise")
+
+# stagewise: Like stepwise but with better generalizability
+
+forward <- lars(x, y, type = "forward.stagewise")
+
+# LAR: Least Angle Regression
+
+lar <- lars(x, y, type = "lar")
+
+# LASSO: Least Absolute Shrinkage and Selection Operator
+
+lasso <- lars(x, y, type = "lasso")
+
+r2comp <- c(stepwise$R2[6], forward$R2[6],
+            lar$R2[6], lasso$R2[6]) %>%
+            round(2)
+
+names(r2comp) <- c("stepwise", "forward", "lar", "lesso")
+r2comp
+
+
+
+
+```
+
+```{r}
+
+# exercise 01 - import data and create a pie chart
+
+library(tidyverse)
+library(dplyr)
+
+df <- read.csv('/net/si0vm11670/fs0/home/atl8ca/exploring-data-R/data/Mall_Customers.csv')
+
+hist(df$Age, 
+     main = "Distribuition of Customer Ages",
+     xlab = "Age",
+     ylab = "Frequency",
+     col = "steelblue",
+     freq = TRUE,
+     breaks = 15)
+
+boxplot(`Spending.Score..1.100.` ~ Genre,
+        data = df,
+        main = "Spending Score by Gender",
+        xlab = "Gender",
+        ylab = "Spending Score",
+        col = c("pink", "lightblue"))
+
+plot(df$`Annual.Income..k..`, df$`Spending.Score..1.100.`,
+    main = "Annual Income vs Spending Score",
+    xlab = "Annual Income (k$)",
+    ylab = "Spending Score (1-100)",
+    col = "purple",
+    pch = 19)
+
+ggplot(df, aes(x = `Annual.Income..k..`, y = `Spending.Score..1.100.`, color = Genre)) + 
+    geom_point(size = 3, alpha = 0.6) + 
+    labs(title = "Customer Income vs Spending Begavior", 
+        x = "Annual Income (k$)",
+        y = "Spending Score (1-100)")
+
+
+
+```

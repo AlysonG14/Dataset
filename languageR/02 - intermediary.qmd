@@ -1,0 +1,718 @@
+```{r}
+
+# ARITHMETIC OPERATORS
+
+num1 <- 20
+num2 <- 50
+
+sum <- num1 + num2
+
+
+num3 <- 65.4
+num4 <- 10.4
+
+divided_by <- num3 / num4
+minus <- num3-num4
+times_to <- num3 * num4
+
+
+```
+
+```{r}
+
+num5 <- 80
+num6 <- 2
+
+exponent <- num5 ^ num6
+
+rest_divided <- num5 %% num6
+full_divided <- num5 %/% num6
+
+
+```
+
+```{r}
+
+# ASSIGNMENT OPERATORS
+
+# part 1
+
+Y = B
+
+Z <<- 20
+
+100 ->> Zz
+
+Zzz <- 40
+
+50 -> Zzzz
+
+80 -> Zzzzz
+
+name4 <- "That's not number!"
+
+560 ->> Zzzzzz
+
+Zzzzzzz <<- 480
+
+# part 2
+
+# TRUE
+
+exponent > full_divided
+
+# TRUE
+
+f == Zz
+
+# TRUE
+
+name4 != Zzzzz
+
+# FALSE
+
+X < Z
+
+# FALSE
+
+f != Zz
+
+# FALSE
+
+Zzzzzzz > Zzzzzz
+
+f >= Zz
+f <= Zz
+
+
+
+```
+
+```{r}
+
+# LOGICAL OPERATORS
+
+T = TRUE
+F = FALSE
+F2 = FALSE
+T2 = TRUE
+
+T & F & F2 & T2
+T | F | F2 | T2
+
+! T
+
+! F
+
+
+
+```
+
+```{r}
+
+# SPECIAL OPERATORS
+
+numbers <- 1:10
+
+11 %in% numbers
+
+```
+
+```{r}
+
+A = TRUE
+B <- FALSE 
+C = 10L
+D = 5.99
+E = 10.4L
+F = "OH MY GOD, R LANGUAGE IS FUN, PEOPLE, LOOK THIS!"
+
+```
+
+```{r}
+
+# VECTORS
+
+vtr <- c(20, 30, 40, 50, 60, 70, 75) # numbers
+vtr1 <- c("Hi", "Hello", "Hey") # stringers
+
+sortedvtr <- sort(vtr) # organize the integer numbers
+sortedvtr
+
+sortedvtr <- sort(vtr1) # organize the letters to alphabet
+sortedvtr
+
+sortedvtr[2:3] # searching elements 
+
+sortedvtr[1] <- 'Not Hello' # replacing an element
+
+vtr[10] <- 10 # creating a new value from element at 'vtn'
+ 
+```
+
+```{r}
+
+# WORKING WITH LISTS
+
+working_list <- c("Orange Juice", "Apple" , 2L , 2.88, FALSE, TRUE)
+
+sorted <- sort(working_list)
+
+access_elements <- working_list[4:6]
+access_elements
+
+working_list[2] <- 'Pearl'
+working_list[5] <- TRUE
+
+new_element <- working_list[10] <- 10
+new_element
+
+working_list[1] != working_list[2]
+
+working_list[5]
+
+newListInside <- working_list[11] <- list(10.99, 8.99, 5.49)
+
+newListInside
+
+ 
+
+
+
+
+
+```
+
+```{r}
+
+newList <- list(10, 2L, 4L, 'Goodbye', newListInside, working_list, TRUE, FALSE, FALSE)
+
+newList
+
+list(5, 6, 7, 8) ->> list1
+
+list2 <- list('May', 'June', 'July', 'August')
+list1 <<- c(list1, list2)
+
+merged.list <- c(list1, list2) # merging all elements
+
+# slicing the value
+
+list3 <<- c(list1, list2)
+list3[1]
+
+# indexing
+
+list4 <- list(1, 2, 3)
+
+
+list5 <- merge(list1, list2) # merge list of all variables
+list5
+
+
+
+
+
+
+```
+
+```{r}
+
+cars <- list('CAR A', 'CAR B', 'CAR C', 'CAR D')
+
+traffic_light <- list('Red', 'Yellow', 'Green')
+
+new_list_vehicles <- c(cars, traffic_light)
+
+new_list_vehicles
+
+list5 <- list(34, 9L, TRUE, 3.4, 'Cake', cars)
+list5
+
+```
+
+```{r}
+
+# WORKING WITH ARRAYS FUNCTIONS
+
+list_array <- c(2, 8, 9, 13, 4)
+list_array2 <- c(10, 3, 57, 85, 43)
+
+sorteddf <- sort(list_array)
+sorteddf2 <- sort(list_array2)
+
+sorteddf
+sorteddf2
+
+arr <- array(sorteddf, sorteddf2)
+
+
+```
+
+```{r}
+
+list_today <- array(sorteddf, sorteddf2)
+
+list_today
+
+new_arr <- array(2, 30, 40, 10)
+
+```
+
+```{r}
+# exercise 01
+
+6 -> a
+a
+
+# exercise 02
+
+b <<- 4
+b
+# exercise 03
+
+c <- a + b
+c
+
+# exercise 04
+
+d <- c * 2
+d
+
+# exercise 05
+
+greather <- d > 15
+greather
+
+# exercise 06
+
+not_greater <- d < 15
+not_greater
+
+
+```
+
+```{r}
+
+# part 1: variables
+
+x <<- 12
+5 ->> y
+z <- y - x
+new_value <- x * 2
+name <- 'Alyson Pereira dos Santos'
+typeof(name)
+
+# part 2: arithmetic operations
+
+a <- 10
+20.5 -> b
+sum_ab <- a + b
+prod_ab <- sum_ab
+div_ab <- a / b
+remainder_ab <- a %% b
+
+# part 3: logical & comparison operations
+
+variable_n <<- 30
+variable_n > 10
+variable_n == 5 & 15
+variable_n != 7
+
+limited_price <- 4100.00
+
+names_stored <- c('Beto', 'Lucas', 'Ana')
+logical_variable <- list('Motherboard', 'RAM Memory', 'SSD Memory', 'Video-plate', 'Processor', limited_price)
+logical_variable2 <- c(2759.00, 3628.14, 3614.93)
+
+
+logical_variable2[1] & logical_variable2[2] != logical_variable2[3]
+# logical_variable[1] | logical_variable[2] | logical_variable[3] | logical_variable[4] == logical_variable[4]
+
+names_stored[1] %in% logical_variable[1:3]
+names_stored[2] %in% logical_variable[4] & logical_variable[1:2] & logical_variable[5]
+names_stored[3] %in% logical_variable[4:5] & logica_variable[1:3]
+
+```
+
+```{r}
+# part 4: working with vectors
+
+vector <- c(2, 4, 6, 8, 10)
+
+vector[6:8] = c(12, 14, 16)
+
+multiply <- vector * 2
+
+sum_elements <- sum(vector)
+
+mean_elements <- mean(vector)
+
+max_element <- max(vector)
+
+# part 5: combined exercises
+
+length <- 15
+width <- 24
+
+print(pi)
+
+
+# part 6: thinking exercises
+
+
+
+# part 7: final challenge
+
+
+```
+
+```{r}
+
+# ANOTHER TYPE OF ARRAYS
+
+vtr1 <- c(56, 43, 21, 20, 19)
+vtr2 <- c(10, 45, 21, 40, 2)
+
+vtr3 <- array(c(vtr1, vtr2), dim=c(5, 4, 2, 1))
+vtr3
+
+
+
+```
+
+```{r}
+
+# WORKING WITH MATRICES
+
+new_arr <- c(2, 3, 1, 65, 443, 32)
+new_arr2 <- c(24, 5, 21, 2, 34, 98)
+
+merged <- sort(new_arr)
+merged2 <- sort(new_arr2)
+
+mtr <- matrix(c(merged, merged2),6,10)
+mtr
+
+
+```
+
+```{r}
+
+# FACTORS
+
+vt1 <- c(20, 10, 45, 19, 89)
+
+sortedvt1 <- sort(vt1)
+
+factvt1 <- factor(sortedvt1)
+
+
+
+
+```
+
+```{r}
+
+# DATAFRAME
+
+id <- c(100:105)
+name <- c("Python", "R", 'JavaScript', 'Java', 'PHP')
+name[6] = 'Dart'
+
+programming <- data.frame(id, name)
+programming
+
+numbers <- c(20, 43, 21, 89, 76, 99)
+
+numbers_programming <- data.frame(id, name, numbers)
+numbers_programming
+
+
+
+
+```
+
+```{r}
+
+# FLOW CONTROL - IF ELSE
+
+x <- 10
+y <- 10
+
+if(x > y){
+    print('X is greater than Y')
+} else if(x == y) {
+    print("X and Y is equal")
+} else{
+    print("X isn't greater than Y")
+}
+
+```
+
+```{r}
+
+# FLOW CONTROL - SWITCH CASE
+
+vtr <- c(100, 300, 240, 500, 621, 32)
+option <- "mean"
+
+switch(option, 
+      "mean" = print(mean(vtr)),
+      "mode" = mode((vtr)),
+      "median" = median((vtr))
+      print("invalid input!")
+)
+
+```
+
+```{r}
+
+# FLOW CONTROL - REPEAT
+
+x = 2
+repeat{
+    x=x^2
+    if (x>100)
+        break
+}
+
+x
+
+```
+
+```{r}
+
+# FLOW CONTROL - WHILE
+
+x = 2
+while (x>1000) {
+    x=x^2
+    print(x)
+}
+
+
+```
+
+```{r}
+
+# FLOW CONTROL - FOR
+
+vtr <- c(39, 29, 19, 09, 32)
+for (i in vtr){
+    print(i)
+}
+
+```
+
+```{r}
+
+# FLOW CONTROL - NEXT
+
+for (i in 1:15){
+    if ((i%%2) == 0 ){
+        next
+    }
+    print(i)
+}
+
+
+```
+
+```{r}
+
+# DATA VISUALIZATION - CHARTS
+
+vtr <- c(14, 28, 30, 8, 54)
+name <- c("Digital Solutions", "Administrator", "Industry 4.0", "Mecathronics", "Industry")
+
+pie(vtr, name, col = rainbow(length(vtr)))
+barplot(vtr)
+boxplot(mpg ~ cyl, data = mtcars, xlab = "Number of Cylinders",
+        ylab = "Miles Per Gallon", main = "Mileage Data", col = c ("Red", "Yellow", "Blue"))
+
+
+vtr <- c(vtr1, col="blue", border = "red")
+
+
+
+```
+
+```{r}
+
+# DATA VISUALIZATION - PIE, BAR AND BLOXPLOT
+
+number <- c(10, 20, 30, 40, 50, 60)
+car <- c('Corolla', 'Siena', 'Fox', 'Pálio', 'HB20', 'Onix')
+    
+pie(number, car, col = rainbow(length(car)))
+barplot(number)
+
+boxplot(mpg ~ cyl, data = mtcars, xlab = "Number of Cylinders",
+        ylab = "Miles Per Gallon", main = "Mileage Data", col = c ("Yellow", "Brown", "Green"))
+
+```
+
+```{r}
+
+# DATA VISUALIZATION - HISTOGRAM
+
+college <- c('UNASP', 'PUC', 'USF', 'UNIP', 'UNICAMP', 'USP', 'Anhanguera', 'UNIMETROCAMP')
+vtr <- c(9, 23, 43, 21, 21, 22, 11)
+
+hist(vtr, col = 'red', border = 'darkred')
+
+```
+
+```{r}
+
+# DATA VISUALIZATION - LINE GRAPH
+
+vtr1 <- c(30, 41, 99, 43, 56, 21, 12)
+
+plot(vtr1, type = "o")
+
+
+```
+
+```{r}
+
+# DATA VISUALIZATION - SCATTERPLOT
+
+vtr1 <- c(40, 21, 10, 50, 30, 76, 9)
+vtr2 <- c(32, 89, 12, 10, 40, 12, 8)
+plot(vtr1, vtr2)
+
+
+
+
+
+```
+
+```{r}
+
+install.packages("lubridate")
+library(lubridate)
+
+```
+
+```{r}
+
+# EXERCISES FOR AND WHILE
+
+# FOR LOOP - INTERMEDIARY -> ADVANCED
+
+# exercise 01
+
+numbers <- 1:10
+
+for(num in numbers)
+    print(num)
+
+# exercise 02
+
+inverse_num <- 10:1
+
+for (inv in inverse_num)
+    print(inv)
+    
+    if(inv == 5) {
+        print('')
+        next
+
+    } else if(inv == 6) {
+        print('') 
+        next
+
+    } else if(inv == 9){
+        break
+    }
+
+# exercise 03
+
+numbers <- c(21, 56, 78, 10, 99, 5)
+
+system.time({
+    
+    for(each in numbers[1])
+        print(each)
+
+    Sys.sleep(2)
+
+    for(each in numbers[2])
+        print(each)
+
+    Sys.sleep(2)
+
+    for(each in numbers[3])
+        print(each)
+
+    Sys.sleep(2)
+
+    for(each in numbers[4])
+        print(each)
+
+    Sys.sleep(2)
+
+    for(each in numbers[5])
+        print(each)
+
+    Sys.sleep(2)
+
+    for(each in numbers[6])
+        print(each)
+
+    Sys.sleep(2)
+
+})
+
+
+```
+
+```{r}
+
+# exercise 04
+
+# numbers <- c(2, 4, 6)
+# for (multipy in numbers){
+#     multiply * 2
+#     print(multiply)
+# }
+# 
+# plot(multiply, type='o')
+
+# exercise 05
+
+system.time({
+
+    numbers_normal <- c(1, 2, 3, 4, 5)
+
+    count <- 1
+
+    for (square in numbers_normal){   
+        square <- square + 1
+        result <- square ^ 2
+        print(result)
+    }
+})
+
+plot(square, type='o')
+
+
+# exercise 06
+
+names <- c('Ana', 'Luis', 'Maria')
+for (hello in names){
+    print(paste('Hello ',hello))
+}
+
+plot(names, type='o')
+
+
+
+
+
+
+
+
+```

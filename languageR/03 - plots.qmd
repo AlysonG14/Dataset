@@ -1,0 +1,465 @@
+
+```{r}
+
+library(tidyverse)
+library(datasets)
+
+states <- read.csv("data/netflix_titles.csv.csv")
+
+st <- states[, 3:12]
+row.names(st) <- states[, 2]
+
+# Criar a distância da matrix
+
+# Veja os nomes da colunas
+
+names(states)
+
+# Vê dimensões (linhas, colunas)
+
+dim(states)
+
+# Vê estrutura
+
+str(states)
+
+d <- dist(st)
+c <- hclust(d)
+plot(c)
+
+
+```
+
+```{r}
+
+library(datasets)
+
+head(iris)
+summary(iris)
+plot(iris)
+
+```
+
+```{r}
+
+install.packages("pacman")
+
+install.packages("https://cran.r-project.org/src/contrib/Archive/GGally/GGally_2.2.1.tar.gz", repos = NULL, type = "source")
+
+install.packages(c("dplyr", "ggplot2", "ggthemes", "ggvis",
+                   "httr", "lubridate", "plotly", "rio",
+                   "rmarkdown", "shiny", "stringr", "tidyr"))
+
+require(pacman)
+library(pacman)
+library(dplyr)
+library(ggplot2)
+library(ggthemes)
+
+# pacman::p_load(pacman, dplyr, GGally, ggplot2, ggthemes, 
+#     ggvis, httr, lubridate, plotly, rio, rmarkdown, shiny, 
+#     stringr, tidyr)
+
+# library(GGally)
+
+# limpa pacotes
+
+p_unload(dplyr, tidyr, stringr) # limpa pacotes específicos
+p_unload(all) # limpa todos os add-ons
+detach("package:datasets", unload = TRUE)
+
+# limpa console
+
+cat("\014")
+
+```
+
+```{r}
+
+library(datasets)
+
+head(iris)
+
+?plot
+
+plot(iris)
+
+# plot com opções 
+
+plot(iris$Petal.Length, iris$Petal.Width, 
+    col = "#cc0000", 
+    pch = 19,
+    main = "Iris: Petal Length vs. Petal Width",
+    xlab = "Petal Length",
+    ylab = "Petal Width")
+
+plot(cos, 0, 2*pi)
+plot(exp, 1, 5)
+
+
+# Formula plot com opções
+
+plot(dnorm = -3, 3+,
+     col = "#cc0000",
+     lwd = 5,
+     main = "Standard Normal Distribuition",
+     xlab = "Z_Scores",
+     ylab = "Density"
+     )
+ 
+
+```
+
+```{r}
+
+# barplot
+
+library(datasets)
+
+barplot(mtcars$cyl)
+
+
+# basic histograms
+
+#hist(iris$Sepal.Length)
+#hist(iris$Sepal.Width)
+#hist(iris$Petal.Length)
+#hist(iris$Petal.Width)
+
+hist(iris$Petal.Width [iris$Species == "setosa"], 
+    xlim = c(0, 3),
+    breaks = 9,
+    main = "Petal Width for Setosa",
+    xlab = "",
+    col = "red")
+
+
+
+hist(iris$Petal.Width [iris$Species == 'versicolor'], 
+    xlim = c(0, 3),
+    breaks = 9,
+    main = "Petal Width for Versicolor",
+    xlab = "",
+    col = "purple")
+
+
+hist(iris$Petal.Width [iris$Species == "virginica"], 
+    xlim = c(0, 3),
+    breakes = 9,
+    main = "Petal Width for Virginica",
+    xlab = "",
+    col = "brown")
+
+```
+
+```{r}
+
+# Scatterplots
+
+hist(mtcars$wt)
+hist(mtcars$mpg)
+
+plot(mtcars$wt, mtcars$mpg, 
+    pch = 19,
+    cex = 1.5,
+    col = "darkblue",
+    main = "MPG as a Function of Weight of Cars",
+    xlab = "Weight (in 1000 pounds)",
+    ylab = "MPG")
+
+
+```
+
+```{r}
+
+?lynx 
+head(lynx)
+
+hist(lynx, 
+     breaks = 14,
+     freq = FALSE,
+     col = "thistle1",
+     main = paste("Histogram of Annual Canadian Lynx",
+                  "Trappings, 1821-1934"), 
+     xlab = "Number of Lynx Trapped") 
+
+
+# Adiciona uma distribuição normal
+curve(dnorm(x, mean = mean(lynx), sd = sd(lynx)), 
+      col = "thistle4",
+      lwd = 2,
+      add = TRUE)
+
+# adiciona dois estimadores de densidade kernel
+
+lines(density(lynx), col = "blue", lwd = 2)
+lines(density(lynx, adjust = 3), col = "purple", lwd = 2) 
+
+ruge(lynx, lwd = 2, col = "gray")
+
+
+```
+
+```{r}
+
+# summary
+
+summary(iris$Species)
+summary(iris$Sepal.Length)
+summary(iris)
+
+```
+
+```{r}
+
+# describe
+
+pacman::p_load(pacman, dplyr, ggplot2, ggthemes, ggvis, httr, lubridate, plotly, rio, rmarkdown, shiny, stringr, tidyr)
+
+library(datasets)
+
+head(iris)
+
+p_load(psych) # Abre pacote de PDF em navegador
+p_help(psych, web = F)
+
+describe(iris$Sepal.Length)
+describe(iris)
+
+
+
+
+
+
+
+```
+
+```{r}
+
+# exercise 01
+
+system.time({
+
+    grade <- c(7.5, 8.0, 6.5, 9.0, 5.5, 7.0, 8.5, 6.0, 10.0, 7.8)
+    
+        # mean
+        print(paste("The mean grade is: ",mean(grade)))
+
+        Sys.sleep(2)
+    
+        # median
+        print(paste("The median grade is: ",median(grade)))
+
+        Sys.sleep(2)
+
+        # standard deviaton
+        print(paste("The Standard Deviation grade is: ",sd(grade)))
+
+        Sys.sleep(2)
+
+        # bigger grade
+        print(paste("The bigger grade is",max(grade)))
+
+        Sys.sleep(2)
+
+        # smaller grade
+        print(paste("The smaller grade is",min(grade)))
+})
+
+# ANOTHER OPTION
+
+grade2 <- c(3.4, 6.8, 9.8, 7.7, 2.6, 10)
+option <- "median"
+
+switch(option, 
+    "mean" = print(mean(grade2)),
+    "median" = print(mean(grade2)),
+    "standard deviation" = print(sd(grade2)),
+    "max" = print(max(grade2)),
+    "min" = print(min(grade2)),
+    print("Invalid Input!")
+)
+
+
+```
+
+```{r}
+
+# exercise 02
+
+ages <- c(18, 22, 19, 25, 30, 21, 23, 20)
+
+# add a new element to incluse +1 age
+
+new_age <- ages[9] <- 24
+new_age
+
+
+for (i in ages){
+    print(i)
+}
+
+print('XXXXXXXXXXXXXXXXXXXXXXXXXXX')
+
+# filtering only 21 years
+
+for (age in ages){
+    if(age > 21){
+        print(age)
+    }
+}
+
+# count how much is bigger than 21
+
+print('XXXXXXXXXXXXXXXXXXXXXXXXXXX')
+
+for (bigger in ages){
+    if(bigger > 21) {
+        print(lengths(bigger))
+    }
+}
+
+print(lengths(bigger))
+
+
+print('XXXXXXXXXXXXXXXXXXXXXXXXXXX')
+
+# calculate the mean only bigger than 21
+
+for (calc in ages){
+    if(calc > 21){
+        print(calc)
+        result <- c(calc)
+    }
+}
+
+print(paste("The bigger number is: ",max(result)))
+
+# exercise 03
+
+thismatrix <- matrix(c(1, 2, 3, 4, 5, 6, 7, 8, 9), nrow = 3, ncol = 3)
+thismatrix
+
+sum <- sum(thismatrix), nrow
+sum
+
+
+
+
+
+
+```
+
+```{r}
+
+# exercise 04 - create a list numbers with numbers organization
+ # when you're organization, create now if number 25 is equal, so return stop it
+ # if, you don't have 25, so create a new element
+ # now, create your another list to store inside "list"
+ # have a possibily to print list with while loop?
+
+list <- c(20, 10, 30, 45, 55, 86, 23, 11)
+
+list2 <- c(405, 453, 201, 103, 406)
+
+list[7] <- 25
+
+for (i in list) {
+    print(i)
+}
+
+sorteddf <- sort(list)
+
+print(sorteddf)
+
+system.time({
+
+    for (x in sorteddf){
+        print(paste("Numbers: ",x))
+        if(x == 25){
+            print("STOP IT")
+            next
+        }
+    
+        if(x == 30){
+            print("WAIT FOR 2 SECONDS")
+            Sys.sleep(2)
+            next
+        }
+    }
+    
+        print("It's over")
+})
+
+inside_list <- c(list, list2)
+
+sorteddf_inside_list <- sort(inside_list)
+
+
+system.time({
+
+    for (exercise3 in sorteddf_inside_list){
+            print(exercise3)
+            if(exercise3 == 103){
+                print(paste("WAIT FOR 2 SECONDS"))
+                Sys.sleep(2)
+            }
+        }
+})
+
+count <- 1
+
+# while(sorteddf_inside_list >= count){
+#     print(sorteddf_inside_list)
+#     next
+#     print("NO, THERE'S NO POSSIBLE TO CREATE!")
+#     sorteddf_inside_list <- sorteddf_inside_list + 1
+# }
+
+
+# and now, create with statistical (switch case) and barplot, pie chart and plot
+
+option <- readline()
+
+switch(option,
+    "mean" = print(paste("Mean: ",mean(sorteddf_inside_list))),
+    "median" = print(paste("Median: ",median(sorteddf_inside_list))),
+    "standard derivation" = print(paste("Standard Derivation: ",sd(sorteddf_inside_list))),
+    "max" = print(paste("Max Number: ",max(sorteddf_inside_list))),
+    "min" = print(paste("Min Number: ",min(sorteddf_inside_list))),
+    print("Invalid Input")
+)
+
+barplot(list, 
+        xlab = "Number", 
+        ylab = "Number",
+        main = "Standard Numbers",
+        col = 'red'
+    )
+
+```
+
+```{r}
+
+# plot(list) 
+
+# with hist for now, create it and describe() also
+
+hist(list, 
+    xlim = c(0, 2),
+    breaks = 5,
+    main = "Standard Numbers",
+    xlab = "Numbers",
+    ylab = "Numbers",
+    col = "Purple"
+)
+
+describe(list)
+
+
+
+
+
+
+
+```

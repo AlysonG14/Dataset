@@ -1,0 +1,120 @@
+```{python}
+
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pygwalker as pyg
+import time 
+
+# filtering about age younger and older
+# create a new column dataframe to multiply "Annual Income" * "Spending Score (1-100)"
+# filter only male another female with function input/output to choose 'male/female'
+# load dashboard
+# 
+
+df = pd.read_csv('data/Mall_Customers.csv')
+df.head()
+
+df.columns
+
+young_older = df[(df['Age'] < 18) | (df['Age'] > 60)]
+young_older.tail(100)
+
+
+df['Total'] = df['Annual Income (k$)'] + df['Spending Score (1-100)']
+df.head()
+
+def genre():
+    while True:
+        choose = str(input("What genre do you want to Choose?\n1- Male\n2- Female\n3- Leave\nChoose: ")).title()
+        if(choose == 'Male'):
+            male = df[df['Genre'] == 'Male']
+            print(male.to_string())
+            # male.head()
+            break
+        elif(choose == 'Female'):
+             female = df[df['Genre'] == 'Female']
+             print(female.to_string())
+             # female.head()
+             break
+        elif(choose == "Leave"):
+            print("You Leave")
+            break
+        else:
+            print("Incorrect, Try again!\n")
+
+genre()
+
+time.sleep(1)
+print("Plot 1")
+
+
+# plot distribuition by genre (male/female)
+plt.figure(figsize=(8, 6))
+sns.countplot(data=df, x='Genre', palette='Set2')
+plt.title("Distribuition of Customer")
+plt.xlabel("Gender")
+plt.ylabel("Count")
+plt.savefig('Distribuition_Customer.png')
+plt.show()
+
+time.sleep(1)
+print("Plot 2")
+
+# age distribuition
+plt.figure(figsize=(8, 6))
+sns.histplot(data=df, x='Age', bins=20, kde=True, color="steelblue")
+plt.title("Age Distribuition of Customers")
+plt.xlabel("Age")
+plt.ylabel("Frequency")
+plt.savefig('Age_Distribuition.png')
+plt.show()
+
+time.sleep(1)
+print("Plot 3")
+
+# income vs spending score
+plt.figure(figsize=(8, 6))
+sns.scatterplot(data=df, x='Annual Income (k$)', y='Spending Score (1-100)',
+                hue='Genre', s=100, alpha=0.6)
+
+plt.title("Income vs Spending Score by Gender")
+plt.xlabel("Annual Income (k$)")
+plt.ylabel("Spending Score (1-100)")
+plt.savefig('Score_Gender.png')
+plt.show()
+
+
+
+
+
+
+
+```
+
+```{python}
+
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pygwalker
+
+df = pd.read_csv('data/Mall_Customers.csv')
+df.head(10)
+
+
+df.columns
+
+plt.figure(figsize=(8, 6))
+plt.title('Distribuition of Score', size=20)
+plt.xlabel('Annual Income', size=15)
+plt.ylabel('Spending Score', size=15)
+plt.show()
+
+sns.scatterplot(data=df, x='Annual Income (k$)', y='Spending Score (1-100)', 
+                hue='Genre', s=100, alpha=0.8)
+
+
+```
