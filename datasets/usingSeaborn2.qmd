@@ -1,0 +1,61 @@
+```{python}
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.scatterplot(x=[1,2,3], y=[1,2,3])
+
+sns.set_theme(style='darkgrid')
+
+# there are several palettes colors to visualization
+
+sns.color_palette()
+sns.color_palette('Set2')
+sns.color_palette('Set3')
+sns.color_palette('hls', 8)
+sns.color_palette('hls', 4)
+sns.color_palette('hls', 10)
+sns.color_palette('Paired')
+sns.color_palette('rocket')
+sns.color_palette('rocket', as_cmap=True)
+sns.color_palette('deep')
+
+tips_data = pd.read_csv(r'C:\Users\ATL8CA\Desktop\Datasets\datasets\tips.csv')
+
+tips_data
+
+sns.scatterplot(tips_data, x='total_bill', y='tip', size='size', style='smoker')
+
+sns.relplot(data=tips_data, x='total_bill', y='tip', 
+size='size', style='smoker', col='day', col_wrap=2, # kind='scatter') # with weekends col
+
+sns.relplot(data=tips_data, x='total_bill', y='tip', 
+size='size', style='smoker', col='sex', col_wrap=2, kind='scatter') # with gender col
+
+plt.legend()
+
+
+```
+
+```{python}
+
+dow_data = pd.read_csv(r'')
+
+```
+
+```{python}
+
+```
+
+```{python}
+
+```
+
+```{python}
+
+```
+
+```{python}
+
+```

@@ -1,0 +1,24 @@
+```{python}
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import pygwalker as pyg
+import seaborn as sns
+
+df = pd.read_csv(r'C:\Users\ATL8CA\Desktop\Datasets\parkinson\parkinsons_updrs.data')
+df
+
+df['sex'] = df['sex'].replace({0: 'Male', 1: 'Female'})
+
+plt.title('Distribuition of Parkinson')
+sns.barplot(data=df, 
+            hue='sex', 
+            x='total_UPDRS', 
+            y='sex', 
+            col=['b', 'g']
+            )
+
+plt.xlabel('')
+plt.ylabel('')
+
+```

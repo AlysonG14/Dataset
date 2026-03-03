@@ -1,32 +1,191 @@
 ```{python}
 
 import os
-import pandas as pd
-from sqlalchemy.sql._elements_constructors import true
+import pandas as pd 
 import numpy as np
 import matplotlib.pyplot as plt
 import pygwalker as pyg
 import seaborn as sns
 
-
-df = pd.read_csv(r'parkinson/parkinsons_updrs.data')
+# Load the Parkinson's dataset
+df = pd.read_csv(r'parkinsons_updrs.data')
 df.tail(10)
 
+# Set seaborn theme for consistent styling across all plots
+# pallette="pastel" = soft, muted colors
+sns.set_theme(style="white", palette="pastel")
+
+# Print all column names to verify data structure
 verify_column = df.columns
 print(verify_column)
 
-df = df[df['age'] < 50]
-
+# Convert sex column from numeric to text labels
+# 0 = Male, 1 = Female
 df['sex'].astype('str')
-
 df['sex'] = df['sex'].replace({0: 'Male', 1: 'Female'})
 
+# Create horizontal boxplots showing UPDRS score
 plt.figure(figsize=(8, 6))
-sns.histplot(data=df, x="sex")
+sns.boxplot(data=df, x="total_UPDRS", y='sex', palette=["m", "g"])
+sns.lineplot()
 
-plt.title('Distribuition of Parkinson', size='15', col='darkgreen')
-plt.xlabel('Gender', size='12', col='darkblue')
-plt.ylabel('Number of Pacients', size= '12')
+# Add labels and styling
+plt.title('Distribuition of Parkinson by Gender', size='15')
+plt.xlabel('Gender', size='12')
+plt.ylabel('Number of Pacients', size='12')
+sns.despine(offset=10, trim=True)
+plt.show()
+
+```
+
+
+```{python}
+
+# Filter dataset so only include patients younger than 70
+df = df[df['age'] < 70]
+
+# Ensure sex column is properly labeled
+df['sex'] = df['sex'].replace({0: 'Male', 1: 'Female'})
+
+# Calculate average motor UPDRS score for each gender
+avg_by_gender = df.groupby('sex')['motor_UPDRS'].mean().reset_index()
+
+# Create horizontal bar chart
+plt.figure(figsize=(8, 4))
+sns.barplot(
+    data=avg_by_gender,
+    x='motor_UPDRS',
+    y='sex',
+    palette=['#4A90E2', '#E94B77'],
+    alpha=0.8
+)
+
+# Display legends of graphic: Title, XLabel and YLabel
+plt.title('Average Motor UPDRS Score by Gender (Age < 70)', fontsize=13, pad=15)
+plt.xlabel('Average Motor UPDRS Score', fontsize=11)
+plt.ylabel('Gender', fontsize=11)
+
+# Add numeric labels on each bar showing the exact value
+for i, row in avg_by_gender.iterrows():
+    plt.text(row['motor_UPDRS'], i, f" {row['motor_UPDRS']:.1f}",
+            va='center', fontsize=10)
+
+sns.despine()
+plt.tight_layout()
+plt.savefig('gender_barplot.png', dpi=150)
+plt.show()
+
+```
+
+```{python}
+
+# Convert sex to string and replace values
+df['sex'] = df['sex'].astype('str').replace({0: 'Male', 1: 'Female'})
+
+# Create scatter plot with additional dimensions (size, colors)
+g = sns.relplot(
+    data=df,
+    x='Jitter(%)', 
+    y="total_UPDRS",
+    hue="sex", 
+    size='age',
+    sizes=(30, 200),
+    alpha=0.5,
+    palette=['#4A90E2', '#E94B77'],
+    height=6,
+    aspect=1.5
+)
+
+# Add title above the plot
+g.fig.suptitle('Voice Jitter vs Disease Severity', fontsize=14, fontweight='bold', y=1.02)
+
+# Set axis labels
+g.set_axis_labels("Jitter(%)", "Total UPDRS Score", fontsize=12)
+
+# Calculate and display correlation statistics
+from scipy import stats # Statistical functions
+corr, p_value = stats.pearsonr(df['Jitter(%)'], df['total_UPDRS'])
+
+# Add text box with correlation into to the plot
+g.ax.text(0.05, 0.95, 
+          f'Overall r = {corr:.3f}\np < {p_value:.3f}',
+          transform = g.ax.transAxes,
+          fontsize=10,
+          verticalalignment='top',
+          bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
+          
+# Add grid for easier reading
+g.ax.grid(True, alpha=0.3, linestyle='--')
+g.ax.set_axisbelow(True)
+
+sns.despine()
+plt.tight_layout()
+plt.savefig('relplot_improved.png', dpi=150) # dpi --> Is the resolution in dots per inch. 
+plt.show()
+
+
+```
+
+```{python}
+
+# Change theme to "darkgrid"
+sns.set_theme(style="darkgrid")
+
+# Reload dataset fresh (good practice for independent chunks)
+df3 = pd.read_csv(r'parkinsons_updrs.data')
+
+# Display columns names
+df3.columns
+
+# Filter for patients under 70
+df3 = df3[df3['age'] < 70]
+
+# Convert sex to text labels
+df3['sex'] = df3['sex'].astype('str').replace({0: 'Male', 1: 'Female'})
+
+# Rename "subject#" column to "number#" (# in column names can be problematic)
+df3 = df3.rename(columns={'subject#': 'number#'})
+
+# Create joint plot: scatter + marginal histogram
+g = sns.jointplot(
+              x='age', 
+              y='number#', 
+              data=df3, 
+              kind='reg',                # regression line
+              color='#6A5ACD',         # nice purple color
+              height=8,                  # larger plots
+              space=0.2,                 # space between joint and margina plots
+              marginal_kws=dict(bins=20, fill=True, alpha=0.6), # better histograms
+              joint_kws=dict(scatter_kws={'alpha': 0.5, 's': 30}) # semi-transparent points
+              )
+
+# Add title(positioned above the plot)
+g.fig.suptitle('Relationship Between Age and Subject Number\n (Patients Age > 70)', y=0.98, fontsize=14, fontweight='bold')
+
+# Set axis labels
+g.set_axis_labels('Age (years)', 'Subject Number', fontsize=12)
+
+# Calculate correlation between age and subject number
+from scipy import stats
+corr, p_value = stats.pearsonr(df3['age'], df3['number#'])
+
+# Add correlation info as text box on the joint plot
+g.ax_joint.text(
+    0.05, 0.95, 
+    f'r = {corr:.3f}\np = {p_value:.3f}',
+    transform=g.ax_joint.transAxes,
+    fontsize=11,
+    verticalalignment='top',
+    bbox=dict(boxstyle='round', facecolor='white', alpha=0.8)
+)
+
+# tight_layout --> automatically adjusts subplot parameters to prevent overlaps
+plt.tight_layout() 
+
+# Save figure with high resolution
+plt.savefig('gender_hexbin.png', dpi=300, bbox_inches='tight')
+
+# Show the plot
 plt.show()
 
 
@@ -35,21 +194,27 @@ plt.show()
 ```{python}
 
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-# example simply to replace values
+# Set theme with "ticks"
+sns.set_theme(style="ticks")
 
-data = {
-    'Array 1': ['Toy', 'Old'],
-    'Array 2': ['Serious', 'Normal'],
-    'Array 3': ['Nightmare', 'Monster'],
-}
+# Load data fresh
+df = pd.read_csv(r'parkinsons_updrs.data')
 
-df = pd.DataFrame(data)
-df.head(3)
+# Convert sex to labels
+df['sex'] = df['sex'].replace({0: 'Male', 1: 'Female'})
 
-df.replace(to_replace="Old", value='Withered')
+# Select only keys columns for pairplot to keep it manageable
+# Pairplot creates NxN grid of plots, so fewer columns = faster rendering
+key_cols = ['age', 'sex', 'motor_UPDRS', 'total_UPDRS']
 
+# Create pairplot: shows relationship between all pairs of variables
+sns.pairplot(df[key_cols], hue='sex', palette=['#4A90E2', '#E94B77'])
 
-
+# Save the complete figure
+plt.savefig('pairplot_key_features.png', dpi=150)
+plt.show()
 
 ```

@@ -1,0 +1,77 @@
+```{python}
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+tips = pd.read_csv("data/datasets/tips.csv")
+planets = pd.read_csv("data/datasets/planets.csv")
+titanic = pd.read_csv("data/datasets/titanic.csv")
+iris = pd.read_csv("data/datasets/iris.csv")
+
+print(tips.to_string())
+
+plt.clf() # Used to clear a current figure
+
+sns.scatterplot(x='tip', y="total_bill", data=tips, hue="day", size='size', palette="YlGnBu")
+
+sns.histplot(tips['tip'], kde=True, bins=20)
+
+sns.barplot(x="sex", y="tip", data=tips, palette="YlGnBu")
+
+sns.distplot(tips['tip'], kde=True, bins=15) # don't use this graphic
+
+sns.boxplot(x="day", y="tip", data=tips, hue="sex", palette="YlGnBu")
+
+sns.stripplot(x="day", y="tip", data=tips, hue="sex", palette="YlGnBu"
+
+sns.jointplot(x="tip", y="total_bill", data=tips, kind='hex', cmap="YlGnBu")
+
+plt.show() 
+
+
+```
+
+```{python}
+
+titanic
+
+sns.heatmap(titanic.corr(numeric_only=True), annot=True, cmap="icefire")
+
+
+
+```
+
+```{python}
+
+iris
+
+sns.clustermap(iris.drop("species", axis=1))
+
+
+
+
+```
+
+```{python}
+
+import pandas as pd
+import numpy as np
+
+a = np.array([10, 20, 30])
+b = np.array([40, 50, 60])
+c = np.array([70, 80, 90])
+
+# df = pd.DataFrame(columns=([a, b, c]))
+# df.rename(columns=[a, b, c])
+# print(df.to_string())
+
+df2 = pd.DataFrame({'E': [1, 2, 3], 'F': ['d', 'e', 'f']})
+
+df1 = pd.DataFrame(columns={'A': [10, 20, 30], 'B': [40, 50, 60], 'C': ['a' ,'b', 'c'], 'D': [True, False, True,], 'E': [df2]})
+
+
+
+
+
+```

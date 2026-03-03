@@ -1,0 +1,17 @@
+```{python}
+
+import pandas as pd
+import pygwalker as pyg
+
+
+df = pd.read_csv(r'C:\Users\ATL8CA\Desktop\Datasets\parkinson\parkinsons_updrs.data')
+
+df['sex'].astype('str')
+df['sex'] = df['sex'].replace({0: 'Male', 1: 'Female'})
+df = df.rename(columns={'subject#': 'number'})
+df.head()
+
+pyg.walk(df)
+
+
+```
