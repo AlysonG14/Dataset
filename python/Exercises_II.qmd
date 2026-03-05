@@ -1,0 +1,12 @@
+```{r}
+
+library(dplyr)
+x <- 2
+
+plot(1:2, 2:3)
+mutate()
+pins::board_local( ) |>
+    pins::pin_read(name = )
+ 
+
+```
