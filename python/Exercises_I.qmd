@@ -1,0 +1,69 @@
+```{python}
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+
+# 1. Creation and Exploration
+
+df = pd.DataFrame(index=[1, 2, 3], 
+                  columns=['date', 'product', 'category', 'price', 'quantity', 'city'], 
+
+                  data=(['2025-01-05', 'Notebook', 'Eletrônicos', 3500, 2, 'São Paulo'],
+                       ['2025-01-07', 'Mouse', 'Eletrônicos', 80, 5, 'Rio de Janeiro'],
+                       ['2025-01-10', 'Cadeira', 'Móveis', 900, 1, 'Belo Horizonte'])
+                )
+
+df.head()
+df.info()
+df.describe()
+print(df.isnull().sum())
+
+df = df.rename(columns={'date': 'datetime'})
+df['billing'] = df['price'] * df['quantity']
+df.head()
+
+# 2. Statistics Descriptive
+
+# What's the total billing?
+
+print("Total Billing: ",np.sum(df['billing']))
+
+# What's the average billing?
+
+print("Media billing: ",np.mean(df['billing']))
+
+# Which product sell the most?
+
+idx = df['billing'].idxmax()
+print('Product with biggest billing:', df.loc[idx, 'product'])
+print('Value:', df.loc[idx, 'billing'])
+
+# Which category with larger billing?
+
+idx1 = df['billing'].idxmax()
+print('The category with larger billing is:', df.loc[idx1, 'category'])
+print("Value: {}".format(df.loc[idx1, 'billing']))
+
+
+# Calculate:
+    # - average
+print("Average: ",np.mean(df['price']))
+    # - median
+print("Median: ",np.median(df['price']))
+    # - standard deviation in "price" column
+print("Standard Deviation: ",np.std(df['price']))
+
+
+
+
+
+
+
+
+
+
+
+
+```   

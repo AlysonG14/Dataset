@@ -1,0 +1,114 @@
+🔹 3. Agrupamentos (GroupBy)
+
+Faturamento por cidade.
+
+Quantidade total vendida por categoria.
+
+Ticket médio por cidade.
+
+Top 3 produtos por faturamento.
+
+Faturamento por mês (extraindo mês da data).
+
+🔹 4. Filtros
+
+Filtre vendas acima de R$ 1000.
+
+Filtre vendas da categoria "Eletrônicos".
+
+Vendas feitas em São Paulo.
+
+Produtos com quantidade maior que 3.
+
+Vendas entre duas datas específicas.
+
+🔹 5. Gráficos (matplotlib / seaborn)
+
+Gráfico de barras do faturamento por categoria.
+
+Gráfico de linha do faturamento ao longo do tempo.
+
+Histograma dos preços.
+
+Boxplot do preço por categoria.
+
+Gráfico de dispersão entre preço e quantidade.
+
+📘 EXERCÍCIOS — R (data.frame / dplyr / ggplot2)
+🔹 1. Criação e Exploração
+
+Criar o data.frame.
+
+Usar:
+
+str()
+
+summary()
+
+head()
+
+Criar coluna faturamento.
+
+Converter data para Date.
+
+Verificar dados faltantes.
+
+🔹 2. Estatísticas
+
+Soma total do faturamento.
+
+Média do preço.
+
+Mediana do preço.
+
+Produto mais vendido.
+
+Desvio padrão do preço.
+
+🔹 3. dplyr
+
+group_by(cidade) + summarise()
+
+Faturamento por categoria.
+
+Top 3 produtos.
+
+Faturamento por mês.
+
+Ticket médio por cidade.
+
+🔹 4. Filtros (dplyr)
+
+filter(preco > 1000)
+
+filter(categoria == "Eletrônicos")
+
+Filtro por intervalo de datas.
+
+arrange(desc(faturamento))
+
+Selecionar colunas específicas com select().
+
+🔹 5. Gráficos com ggplot2
+
+Gráfico de barras por categoria.
+
+Linha temporal de faturamento.
+
+Histograma de preço.
+
+Boxplot por categoria.
+
+Scatter plot preço vs quantidade.
+
+🔥 DESAFIOS AVANÇADOS (Python e R)
+
+Criar uma coluna de margem de lucro (simulada).
+
+Identificar outliers no preço (IQR).
+
+Criar ranking de cidades por faturamento.
+
+Calcular crescimento mensal.
+
+Criar dashboard simples (Python: matplotlib/seaborn | R: ggplot + facets).
