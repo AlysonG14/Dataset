@@ -1,6 +1,6 @@
 🔹 3. Agrupamentos (GroupBy)
 
-Faturamento por cidade.
+Faturamento por cidade. 	
 
 Quantidade total vendida por categoria.
 
@@ -16,7 +16,7 @@ Filtre vendas acima de R$ 1000.
 
 Filtre vendas da categoria "Eletrônicos".
 
-Vendas feitas em São Paulo.
+Vendas feitas em São Pauluo.
 
 Produtos com quantidade maior que 3.
 
@@ -35,35 +35,6 @@ Boxplot do preço por categoria.
 Gráfico de dispersão entre preço e quantidade.
 
 📘 EXERCÍCIOS — R (data.frame / dplyr / ggplot2)
-🔹 1. Criação e Exploração
-
-Criar o data.frame.
-
-Usar:
-
-str()
-
-summary()
-
-head()
-
-Criar coluna faturamento.
-
-Converter data para Date.
-
-Verificar dados faltantes.
-
-🔹 2. Estatísticas
-
-Soma total do faturamento.
-
-Média do preço.
-
-Mediana do preço.
-
-Produto mais vendido.
-
-Desvio padrão do preço.
 
 🔹 3. dplyr
 

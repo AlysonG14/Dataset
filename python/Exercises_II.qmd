@@ -1,12 +1,34 @@
-```{r}
+```{python}
 
-library(dplyr)
-x <- 2
+import pandas as pd
+import matplotlib.pyplot as plt
 
-plot(1:2, 2:3)
-mutate()
-pins::board_local( ) |>
-    pins::pin_read(name = )
+df = pd.DataFrame(index=[1, 2, 3], 
+                  columns=['date', 'product', 'category', 'price', 'quantity', 'city'], 
+                  data=(['2025-01-05', 'Notebook', 'Eletrônicos', 3500, 2, 'São Paulo'],
+                  
+                       ['2025-01-07', 'Mouse', 'Eletrônicos', 80, 5, 'Rio de Janeiro'],
+
+                       ['2025-01-10', 'Cadeira', 'Móveis', 900, 1, 'Belo Horizonte'])
+                )
+
+df['billing'] = df['price'] * df['quantity']
+
+
+# furniture_city = df.groupby('billing')['city'].sum()
+# print(furniture_city)
+
+quantity_total = df.groupby('quantity')['category'].sum()
+
+print("The quantity total is: ",quantity_total)
+
+
+
  
 
+
+
+
+
+ 
 ```
