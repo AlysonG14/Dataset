@@ -1,24 +1,24 @@
 ```{python}
 
 import pandas as pd
-import matplotlib.pyplot as plt
-import pygwalker as pyg
-import seaborn as sns
+import streamlit as st
 
-df = pd.read_csv(r'C:\Users\ATL8CA\Desktop\Datasets\parkinson\parkinsons_updrs.data')
-df
+st.title("Data Analytics Platform")
+st.subheader("Name: Alyson Pereira dos Santos")
+data = 'print("Hello World")'
 
-df['sex'] = df['sex'].replace({0: 'Male', 1: 'Female'})
+def trafficLight():
+    traffic_light = ['red', 'yellow', 'green']
 
-plt.title('Distribuition of Parkinson')
-sns.barplot(data=df, 
-            hue='sex', 
-            x='total_UPDRS', 
-            y='sex', 
-            col=['b', 'g']
-            )
+    choose = st.text_input('Type the traffic light color')
 
-plt.xlabel('')
-plt.ylabel('')
+    if(choose == traffic_light):
+        return True
+    else:
+        return False
+
+st.write(data)
+
+st.code(data)
 
 ```
