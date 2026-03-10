@@ -14,7 +14,7 @@ def trafficLight():
 
     if st.button('Check Avaliability'):
         have_it = choose.lower() in traffic_light
-        'We have this traffic light ' if have_it else 'We don\'t have this traffic light'
+        'We have this traffic light' if have_it else 'We don\'t have this traffic light'
         return True
     else:
         print("We don't have this traffic light!")
@@ -26,5 +26,17 @@ close = ''
 if check:
     trafficLight()
     close = st.button('Close')
+
+
+
+
+
+
+
+
+
+
+
+
     
     
