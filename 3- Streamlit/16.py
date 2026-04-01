@@ -1,0 +1,14 @@
+import streamlit as st
+
+with st.form("my_form"):
+    name = st.text_input("Name")
+    surname = st.text_input('Surname')
+    age = st.slider('How old are you?',0,100,21)
+    start_day = st.date_input("Starting Date")
+
+    submitted = st.form_submit_button("Submit")
+    if submitted:
+        st.write(f'Name: {name}\n Surname: {surname}\n Age: {age}\n Starting: {start_day}\n')
+
+st.write('Outside of Form')
+
